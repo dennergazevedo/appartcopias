@@ -1,0 +1,7 @@
+__tests__
+.gradle
+.vscode
+android
+ios
+.env
+node_modules
