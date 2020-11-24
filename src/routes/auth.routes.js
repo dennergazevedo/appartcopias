@@ -5,6 +5,7 @@ const Stack = createStackNavigator();
 
 import Loading from '../pages/Loading';
 import Dashboard from '../pages/Dashboard';
+import Social from '../pages/Social';
 
 function Routes() {
   return(
@@ -16,6 +17,7 @@ function Routes() {
           }}>
           <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen name="Social" component={Social} />
       </Stack.Navigator>
     </NavigationContainer>
   )

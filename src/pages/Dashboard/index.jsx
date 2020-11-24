@@ -38,6 +38,8 @@ export default function Dashboard({navigation}) {
   const [info, setInfo] = useState('');
   const [modal, setModal] = useState(false);
 
+  const navSocial = () => navigation.navigate('Social');
+
   async function loadOrders(){
     const response = await api.get(`app_os_user/${user.id}`);
     setOrders(response.data);
@@ -96,7 +98,7 @@ export default function Dashboard({navigation}) {
           }
           <Modal info={info} closeModal={closeModal} modal={modal} />
         </List>
-        <Button>
+        <Button onPress={navSocial} >
           <Icon name="phone" size={18} color="#FFF" />
           <ButtonText>FALE CONOSCO</ButtonText>
         </Button>

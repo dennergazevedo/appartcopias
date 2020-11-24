@@ -30,10 +30,17 @@ export default function Item(props) {
           <TitleList>
             <TextListOrders>
               {product.nome} { 
-              Number(props.order.altura) !== 0? 
-              ` - ${props.order.largura} x ${props.order.altura}`
+              Number(props.order.altura) !== 0 && Number(product.unidade) !== 3? 
+              ` - ${Number(props.order.largura) * 100}cm x ${Number(props.order.altura) * 100}cm`
               :
-              null
+              <>
+                {
+                  Number(product.unidade) === 3?
+                  ` - ${Number(props.order.altura) * 100}cm x ${Number(product.largura)}cm`
+                  :
+                  null
+                }
+              </>
             }
             </TextListOrders>
             <TextListOrders>{props.order.quantidade}und.</TextListOrders>

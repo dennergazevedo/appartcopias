@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, Linking } from "react-native";
 
 // ASSETS
 import logo from '../../assets/img/logo.png';
@@ -14,14 +14,17 @@ import {
   Background,
   Input,
   Button,
-  ButtonText
+  ButtonText,
+  Footer,
+  Text,
+  TextBold,
 } from './styles';
 
 // AUTH
 import AuthContext from '../../contexts/auth';
 
-export default function Homepage({navigation}) {
-  const { signed, user, signIn } = useContext(AuthContext);
+export default function Homepage() {
+  const { signIn } = useContext(AuthContext);
   const [document, setDocument] = useState('');
   const [reject, setReject] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -36,10 +39,16 @@ export default function Homepage({navigation}) {
       setLoading(false);
     }
   }
-  useEffect(()=>{
-    console.log(signed);
-    console.log(user);
-  }, [user])
+
+  function handleDnr(){
+    Linking.canOpenURL('https://www.instagram.com/dennergazevedo').then(supported => {
+      if (supported) {
+        Linking.openURL('https://www.instagram.com/dennergazevedo');
+      } else {
+        console.log("Erro");
+      }
+    });
+  }
 
     return (
       <Container>
@@ -57,6 +66,9 @@ export default function Homepage({navigation}) {
           :
           <ActivityIndicator size='large' color="#FFF" />
         }
+        <Footer>
+          <Text>Criado por <TextBold onPress={handleDnr}>dnr</TextBold></Text>
+        </Footer>
       </Container>
     )
 }

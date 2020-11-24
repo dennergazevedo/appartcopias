@@ -34,7 +34,7 @@ export const Background = styled.Image`
 export const Logomarca = styled.Image`
   width: 100px;
   height: 87.01px;
-  margin-top: 150px;
+  margin-top: 50px;
   margin-bottom: 50px;
 `;
 
@@ -51,39 +51,64 @@ export const Input = styled.TextInput`
   border: ${props => props.reject? '2px solid #E54': 'none'};
 `;
 
-export const Button = styled.TouchableOpacity`
-  padding: 15px;
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-top: 20px;
-  background-color: #333;
-  border-radius: 3px;
-`;
-
 export const ButtonText = styled.Text`
   color: #FFF;
   font-size: 14px;
   font-weight: bold;
 `;
 
-export const Footer = styled.View`
-  display: flex;
-  flex-direction: row;
+export const Title = styled.View`
+  margin-top: 20px;
+  flex-direction: column;
   align-items: center;
-  margin-top: 150px;
+  justify-content: center;
 `;
 
-export const Text = styled.Text`
+export const TextTitleBold = styled.Text`
+  font-size: 18px;
   color: #FFF;
-  font-size: 14px;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const TextBold = styled.Text`
-  color: #FFF;
-  font-size: 14px;
-  flex-direction: row;
-  align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
+`;
+
+export const TextTitle = styled.Text`
+  font-size: 14px;
+  color: #FFF;
+  margin-bottom: 10px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  padding: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+  background-color: #333;
+  border-radius: 3px;
+  width: 250px;
+`;
+
+export const TextButton = styled.Text`
+  font-size: 14px;
+  color: #FFF;
+`;
+
+export const ButtonBack = styled.TouchableOpacity`
+  padding: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 50px;
+  background-color: #FFF;
+  border-radius: 3px;
+  width: 250px;
+`;
+
+export const TextButtonBack = styled.Text`
+  font-size: 14px;
+  color: #333;
 `;
