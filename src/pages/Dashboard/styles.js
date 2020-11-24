@@ -54,17 +54,15 @@ export const TitleList = styled.View`
   justify-content: space-between;
   background-color: #333;
   padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
 `;
+
+export const View = styled.View``;
 
 export const ItemList = styled.View`
   flex-direction: row;
   justify-content: space-between;
   background-color: #FFF;
   padding: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
   margin-top: 3px;
 `;
 
@@ -72,7 +70,14 @@ export const TextTitleList = styled.Text`
   font-size: 12px;
   font-weight: bold;
   color: #FFF;
-  width: 90px;
+  width: 80px;
+  text-align: center;
+`;
+
+export const TextListOrders = styled.Text`
+  font-size: 12px;
+  font-weight: bold;
+  color: #FFF;
   margin:3px;
   text-align: center;
 `;
@@ -81,7 +86,7 @@ export const TextItemList = styled.Text`
   font-size: 12px;
   font-weight: bold;
   color: #333;
-  width: 90px;
+  width: 80px;
   margin:3px;
   text-align: center;
 `;
@@ -120,6 +125,7 @@ export const TitleModal = styled.View`
   justify-content: space-between;
   align-self: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const TextModal = styled.Text`

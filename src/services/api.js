@@ -1,8 +1,7 @@
-import { API_URL } from 'react-native-dotenv';
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: API_URL,
+    baseURL:'https://vps-3922624.artcopias.com.br:1342',
 });
 
 export default api;

@@ -15,10 +15,6 @@ import {
   TextItemList,
   Button,
   ButtonText,
-  Modal,
-  TitleModal,
-  TextModal,
-  TextTitleModal
 } from './styles';
 
 // ICONS
@@ -32,6 +28,9 @@ import feitapravoce from '../../assets/img/feitapravoce.png';
 
 // SERVICES
 import api from '../../services/api';
+
+// COMPONENTS
+import Modal from './Modal';
 
 export default function Dashboard({navigation}) {
   const { signOut, user } = useContext(AuthContext);
@@ -73,6 +72,7 @@ export default function Dashboard({navigation}) {
           <TitleList>
             <TextTitleList>Nº do Pedido</TextTitleList>
             <TextTitleList>Situação</TextTitleList>
+            <TextTitleList>Valor</TextTitleList>
             <TextTitleList>Informações</TextTitleList>
           </TitleList>
           {
@@ -81,6 +81,9 @@ export default function Dashboard({navigation}) {
                 <ItemList key={id}>
                   <TextItemList>{("000000" + orders[id].id).slice(-6)}</TextItemList>
                   <TextItemList>{orders[id].situacao}</TextItemList>
+                  <TextItemList>
+                    R${Number(Number(orders[id].valor + Number(orders[id].valormin))).toFixed(2)}
+                  </TextItemList>
                   <TextItemList onPress={() => handleInfo(orders[id])}>
                     <Icon name="info" size={18} color="#333" />
                   </TextItemList>
@@ -91,14 +94,7 @@ export default function Dashboard({navigation}) {
                   <ActivityIndicator size='large' color="#333" />
               </ItemList>
           }
-          <Modal
-            animationType="slide"
-            visible={modal}>
-            <TitleModal>
-              <TextTitleModal>PEDIDO Nº {("000000" + info.id).slice(-6)}</TextTitleModal>
-              <Icon name="times" size={24} color="#333" onPress={closeModal}/>
-            </TitleModal>
-          </Modal>
+          <Modal info={info} closeModal={closeModal} modal={modal} />
         </List>
         <Button>
           <Icon name="phone" size={18} color="#FFF" />
