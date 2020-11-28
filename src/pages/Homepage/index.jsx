@@ -33,7 +33,14 @@ export default function Homepage() {
     try{
       setLoading(true);
       setReject(false);
-      signIn(document);
+      let doc = document;
+      if(document.length === 11){
+        doc = `${document[0]}${document[1]}${document[2]}.${document[3]}${document[4]}${document[5]}.${document[6]}${document[7]}${document[8]}-${document[9]}${document[10]}`;
+      }else if(document.length === 14 && document[3] !== '.'){
+        doc = `${document[0]}${document[1]}.${document[2]}${document[3]}${document[4]}.${document[5]}${document[6]}${document[7]}/${document[8]}${document[9]}${document[10]}${document[11]}-${document[12]}${document[13]}`;
+      }
+      console.log(doc);
+      signIn(doc);
     }catch(err){
       setReject(true);
       setLoading(false);
@@ -50,6 +57,23 @@ export default function Homepage() {
     });
   }
 
+  function handleMask(){
+    if(document.length === 11){
+      setDocument(`
+      ${document[0]}${document[1]}${document[2]}.
+      ${document[3]}${document[4]}${document[5]}.
+      ${document[6]}${document[7]}${document[8]}-
+      ${document[9]}${document[10]}`)
+    }else if(document.length === 14){
+      setDocument(`
+      ${document[0]}${document[1]}.
+      ${document[2]}${document[3]}${document[4]}.
+      ${document[5]}${document[6]}${document[7]}/
+      ${document[8]}${document[9]}${document[10]}${document[11]}-
+      ${document[12]}${document[13]}`)
+    }
+  }
+
     return (
       <Container>
         <FeitaPraVoce resizeMode="contain" source={feitapravoce} />
@@ -58,7 +82,7 @@ export default function Homepage() {
         {
           !loading?
           <>
-            <Input placeholder="Digite seu CPF" reject={reject} value={document} onChangeText={text => setDocument(text)}/>
+            <Input onBlur={handleMask} placeholder="Digite seu CPF/CNPJ" reject={reject} value={document} onChangeText={text => setDocument(text)}/>
             <Button onPress={handleOrders}>
               <ButtonText>MEUS PEDIDOS</ButtonText>
             </Button>

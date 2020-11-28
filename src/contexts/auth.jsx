@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { ToastAndroid } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const AuthContext = createContext(null);
@@ -8,6 +9,19 @@ export default AuthContext;
 import api from '../services/api';
 
 export const AuthProvider = ({ children }) =>{
+
+  const Toast = ( { visible }) => {
+    if (visible){
+      ToastAndroid.showWithGravityAndOffset(
+        'Usuário não encontrado',
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        25,
+        50
+      );
+      return null;
+    }
+  }
   const [user, setUser] = useState(null);
 
   useEffect(()=>{
@@ -20,11 +34,14 @@ export const AuthProvider = ({ children }) =>{
 
   async function signIn(document){
     try{
-      const response = await api.get(`app_user/${document}`);
+      const text = document.replace(/[/]/g, '----');
+      const response = await api.get(`app_user/${text}`);
       setUser(response.data);
       await AsyncStorage.setItem('@artcopias:user', JSON.stringify(response.data))
     }catch(err){
-      setUser(null);
+      setUser('Não encontrado');
+      Toast({visible: true});
+      signOut();
     }
   }
 
